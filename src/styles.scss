@@ -1,0 +1,45 @@
+/* Add application styles & imports to this file! */
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+
+
+$margins: 40;
+$paddings: 40;
+
+@mixin margin-list {
+  @for $i from 0 through $margins {
+      .m-#{$i} { margin: #{$i}px; }
+      .ml-#{$i} { margin-left: #{$i}px; }
+      .mr-#{$i} { margin-right: #{$i}px; }
+      .mt-#{$i} { margin-top: #{$i}px; }
+      .mb-#{$i} { margin-bottom: #{$i}px; }
+
+      .m-#{$i}-imp { margin: #{$i}px !important; }
+      .ml-#{$i}-imp { margin-left: #{$i}px !important; }
+      .mr-#{$i}-imp { margin-right: #{$i}px !important; }
+      .mt-#{$i}-imp { margin-top: #{$i}px !important; }
+      .mb-#{$i}-imp { margin-bottom: #{$i}px !important; }
+  }
+}
+
+@mixin padding-list {
+  @for $i from 0 through $paddings {
+      .p-#{$i} { padding: #{$i}px; }
+      .pl-#{$i} { padding-left: #{$i}px; }
+      .pr-#{$i} { padding-right: #{$i}px; }
+      .pt-#{$i} { padding-top: #{$i}px; }
+      .pb-#{$i} { padding-bottom: #{$i}px; }
+
+      .p-#{$i}-imp { padding: #{$i}px !important; }
+      .pl-#{$i}-imp { padding-left: #{$i}px !important; }
+      .pr-#{$i}-imp { padding-right: #{$i}px !important; }
+      .pt-#{$i}-imp { padding-top: #{$i}px !important; }
+      .pb-#{$i}-imp { padding-bottom: #{$i}px !important; }
+  }
+}
+
+@include margin-list;
+@include padding-list;
+
+body {
+  font-family: 'Nunito', sans-serif;
+}

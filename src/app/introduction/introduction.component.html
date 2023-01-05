@@ -1,0 +1,40 @@
+<h3>Problem Statement</h3>
+<p>ACS Consulting needs a small application that can calculate a department and/or manager’s monthly expense
+allocation based on the number and types of employees reporting to the manager or contained within the department.</p>
+
+<h3>Specific Requirements</h3>
+
+<ul>
+  <li>Developers warrant an allocation of $1000 each.</li>
+  <li>QA Testers warrant an allocation of $500 each.</li>
+  <li>Managers warrant an allocation of $300 each.</li>
+  <li>Managers can have QA Testers, Developers and other managers report to them.</li>
+  <li>Departments consist of any kinds of employees.</li>
+  <li>Users of this application should be able to:
+    <ol>
+      <li>Determine the monthly expense allocation warranted a manager        who has various employee types reporting to him/her at least        two levels deep (Manager -> Manager -> Developer). The
+          level of depth of the hierarchy should be flexible ideally.
+      </li>
+      <li>Determine the monthly expense allocation warranted a department with various employee types under it at multiple levels deep just as the Manager can.</li>
+    </ol>
+  </li>
+</ul>
+
+<h3>Example Scenario</h3>
+<ul>
+  <li>For the given hierarchy:-
+    <ul>
+      <li>Manager A
+        <ul>
+          <li>Manager B
+            <ul>
+              <li>Developer</li>
+              <li>QA Tester</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Manager A's allocation should be: $2100</li>
+</ul>

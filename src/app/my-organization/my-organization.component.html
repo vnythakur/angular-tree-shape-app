@@ -1,0 +1,70 @@
+
+<div fxLayout="row" fxLayoutAlign="space-between center">
+  <h3>Management Dashboard</h3>
+  <button mat-raised-button color="primary" class="mb-5-imp" (click)="addNewDept()">Create Department</button>
+</div>
+<mat-divider></mat-divider>
+
+
+<form [formGroup]="organizationForm">
+  <div formArrayName="dept"
+      *ngFor="let d of organizationForm.get('dept')['controls']; let i = index;">
+
+    <mat-card class="mt-8">
+      <div fxLayout="row" fxLayoutAlign="space-between center">
+          <h3 class="m-0">Department {{ i + 1 }}</h3>
+          <button mat-raised-button color="primary" (click)="addNewManager(i)">Add Mananger</button>
+      </div>
+
+      <mat-card-content>
+
+        <div [formGroupName]="i">
+          <!-- MANAGER -->
+          <mat-card class="mt-8" formArrayName="manager" *ngFor="let m of getManagersFormArray(i)['controls']; let j = index;">
+
+            <div fxLayout="row" fxLayoutAlign="space-between center">
+              <h3>Manager {{ j + 1 }}</h3>
+              <div><button mat-raised-button color="primary" (click)="addSubManager(m)">Add Sub Mananger</button>
+              <button mat-raised-button class="ml-8-imp" color="primary" (click)="addDeveloper(m)">Add Developer</button>
+              <button mat-raised-button class="ml-8-imp" color="primary" (click)="addTester(m)">Add Tester</button></div>
+            </div>
+
+            <!-- DEVELOPER -->
+            <p *ngIf="!!m.get('developer').value">Developer : {{ m.get('developer').value }}</p>
+
+            <!-- QA TESTER -->
+            <p *ngIf="!!m.get('tester').value">Tester : {{ m.get('tester').value }}</p>
+
+            <!-- SUB MANAGER -->
+            <div *ngIf="!!m.get('manager').value.length" [formGroupName]="j">
+              <mat-card class="mt-8" formArrayName="manager" *ngFor="let e of m.get('manager')['controls']; let k = index;">
+                <div fxLayout="row" fxLayoutAlign="space-between center">
+                  <h3>Sub Manager {{ k + 1 }}</h3>
+                  <div><button mat-raised-button color="accent" (click)="addDeveloper(e)">Add Developer</button>
+                  <button mat-raised-button class="ml-8-imp" color="accent" (click)="addTester(e)">Add Tester</button></div>
+                </div>
+
+                <!-- SUB MANAGER : DEVELOPER -->
+                <p *ngIf="!!e.get('developer').value">Developer : {{ e.get('developer').value }}</p>
+
+                <!-- SUB MANAGER : QA TESTER -->
+                <p *ngIf="!!e.get('tester').value">Tester : {{ e.get('tester').value }}</p>
+
+                <mat-divider></mat-divider>
+                <br><h3 class="m-0">Total: {{ calcSubManagerCost(e) }} </h3>
+              </mat-card>
+            </div>
+
+
+            <mat-divider></mat-divider>
+            <br><h3 class="m-0">Total: {{ calcManagerCost(m) }} </h3>
+          </mat-card>
+        </div>
+
+      </mat-card-content>
+      
+      <mat-divider></mat-divider>
+      <br><h3 class="m-0">Total: {{ calcDeptCost(d) }} </h3>
+    </mat-card>
+  </div>
+</form>
